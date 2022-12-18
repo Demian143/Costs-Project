@@ -31,7 +31,7 @@ function ProjectForm({ handleSubmit, projectData, btnText }) {
         setProject({
             ...project, category: {
                 id: e.target.value,
-                name: e.target[e.target.selectedIndex].text
+                name: e.target.options[e.target.selectedIndex].text
             }
         });
     }
@@ -40,7 +40,8 @@ function ProjectForm({ handleSubmit, projectData, btnText }) {
         <form onSubmit={submit} className={styles.form}>
             <Input
                 handleOnChange={handleChange}
-                type="text" text="Nome do projeto"
+                type="text"
+                text="Nome do projeto"
                 name="name"
                 placeholder="Insira o nome do projeto"
                 value={project.name ? project.name : ''} />
@@ -57,7 +58,7 @@ function ProjectForm({ handleSubmit, projectData, btnText }) {
                 text="Selecione a categoria"
                 value={project.category ? project.category.id : ''}
                 options={categories} />
-            <Submit text="Criar projeto" />
+            <Submit text={btnText} />
         </form>
     )
 }
