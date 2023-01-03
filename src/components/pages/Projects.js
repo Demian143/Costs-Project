@@ -7,7 +7,7 @@ import LinkButton from '../layout/LinkButton';
 import ProjectCart from '../project/ProjectCard';
 import Loading from '../layout/Loading';
 
-import styles from './styles/Project.module.css';
+import styles from './styles/Projects.module.css';
 
 function Projects() {
     const [projects, setProjects] = useState([]);
