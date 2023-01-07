@@ -20,7 +20,7 @@ function ProjectForm({ handleSubmit, projectData, btnText }) {
 
     const submit = (e) => {
         e.preventDefault();
-        handleSubmit(project)
+        handleSubmit(project);
     }
 
     function handleChange(e) {
