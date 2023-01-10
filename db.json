@@ -7,7 +7,7 @@
         "id": "3",
         "name": "Design"
       },
-      "cost": 363,
+      "cost": 4363,
       "services": [
         {
           "name": "asasa",
@@ -16,16 +16,16 @@
           "id": "cbc1c3cc-bb52-4f9e-8a25-f2b5c8340202"
         },
         {
-          "name": "asasa",
-          "cost": "121",
-          "description": "faz rak coisa",
-          "id": "cbc1c3cc-bb52-4f9e-8a25-f2b5c8340202"
+          "name": "dev php",
+          "cost": "2000",
+          "description": "dev",
+          "id": "8b094250-e9a3-40af-9b63-77aff635beae"
         },
         {
-          "name": "asasa",
-          "cost": "121",
-          "description": "faz rak coisa",
-          "id": "cbc1c3cc-bb52-4f9e-8a25-f2b5c8340202"
+          "name": "dev python",
+          "cost": "2000",
+          "description": "sas",
+          "id": "8aa2c05d-68ed-4c9e-a88e-f0c0228d728e"
         }
       ],
       "id": 1
