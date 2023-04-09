@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./styles/NewProject.module.css";
 import ProjectForm from "../project/ProjectForm";
+import { v4 as uuidv4 } from "uuid";
 
 function NewProject() {
   const history = useNavigate();
@@ -9,9 +10,9 @@ function NewProject() {
     // Inicializar o cost e serviços
     project.cost = 0;
     project.services = [];
+    // Add unique id
+    project.id = uuidv4();
 
-    // Set the project obj in the local storage and redirect to /projects
-    // Todo: Add project obj to a list intead of only one obj
     if (localStorage.getItem("projectList")) {
       const projectList = JSON.parse(localStorage.getItem("projectList"));
 

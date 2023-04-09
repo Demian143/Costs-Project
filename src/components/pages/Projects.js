@@ -30,18 +30,26 @@ function Projects() {
   }, []);
 
   function removeProject(id) {
-    fetch(`http://localhost:5000/projects/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then(() => {
-        setProjects(projects.filter((project) => project.id !== id));
-        setProjectMessage("Projeto removido com sucesso.");
-      })
-      .catch((error) => console.log(error));
+    const projectsData = JSON.parse(localStorage.getItem("projectList"));
+    const newList = projectsData.filter((project) => project.id !== id);
+
+    localStorage.setItem("projectList", JSON.stringify(newList));
+
+    setProjects(newList);
+    setProjectMessage("Projeto removido com sucesso.");
+
+    // fetch(`http://localhost:5000/projects/${id}`, {
+    //   method: "DELETE",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .then(() => {
+    //     setProjects(projects.filter((project) => project.id !== id));
+    //     setProjectMessage("Projeto removido com sucesso.");
+    //   })
+    //   .catch((error) => console.log(error));
   }
 
   return (
@@ -54,13 +62,13 @@ function Projects() {
       {projectMessage && <Message type="success" message={projectMessage} />}
       <Container customClass="start">
         {projects.length > 0 &&
-          projects.map((project, index) => (
+          projects.map((project) => (
             <ProjectCart
               id={project.id}
               name={project.name}
               budget={project.orçamento}
               category={project.category.name}
-              key={index}
+              key={project.id}
               handleRemove={removeProject}
             />
           ))}
