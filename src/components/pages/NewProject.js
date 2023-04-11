@@ -7,7 +7,7 @@ function NewProject() {
   const history = useNavigate();
 
   function createPost(project) {
-    // Inicializar o cost e serviços
+    // Inicialize cost and services
     project.cost = 0;
     project.services = [];
     // Add unique id
@@ -31,21 +31,6 @@ function NewProject() {
         state: { message: "Projeto criado com sucesso." },
       });
     }
-
-    // fetch("http://localhost:5000/projects", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(project),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     history("/projects", {
-    //       state: { message: "Projeto criado com sucesso." },
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   }
 
   return (
