@@ -1,9 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
-
-import styles from "./styles/Project.module.css";
-
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import styles from "./styles/Project.module.css";
 
 import Loading from "../layout/Loading";
 import Container from "../layout/Container";
@@ -53,24 +51,6 @@ function Project() {
     });
 
     localStorage.setItem("projectList", JSON.stringify(projectList));
-
-    // fetch(`http://localhost:5000/projects/${project.id}`, {
-    //   method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(project),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     setProject(data);
-    //     setShowProjectForm(false);
-    //     setMessage("Projeto atualizado.");
-    //     setType("success");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   }
 
   function removeService(id, cost) {
@@ -101,20 +81,6 @@ function Project() {
     setServices(servicesUpdated);
     setMessage("Serviço removido com sucesso!");
     setType("success");
-
-    // fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
-    //   method: "PATCH",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(projectUpdated),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     setProject(projectUpdated);
-    //     setServices(servicesUpdated);
-    //     setMessage("Serviço removido com sucesso!");
-    //     setType("success");
-    //   })
-    //   .catch((err) => console.error(err));
   }
 
   function createService(project) {
@@ -141,17 +107,6 @@ function Project() {
 
     localStorage.setItem("projectList", JSON.stringify(newList));
     setShowServiceForm(false);
-
-    // fetch(`http://localhost:5000/projects/${project.id}`, {
-    //   method: "PATCH",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(project),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     setShowServiceForm(false);
-    //   })
-    //   .catch((err) => console.log(err));
   }
 
   function toggleProjectForm() {

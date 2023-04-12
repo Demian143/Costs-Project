@@ -37,19 +37,6 @@ function Projects() {
 
     setProjects(newList);
     setProjectMessage("Projeto removido com sucesso.");
-
-    // fetch(`http://localhost:5000/projects/${id}`, {
-    //   method: "DELETE",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then(() => {
-    //     setProjects(projects.filter((project) => project.id !== id));
-    //     setProjectMessage("Projeto removido com sucesso.");
-    //   })
-    //   .catch((error) => console.log(error));
   }
 
   return (
