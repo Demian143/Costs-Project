@@ -57,19 +57,16 @@ function Project() {
 
     projectUpdated.services = servicesUpdated;
     projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost);
-    // Todo: Refactor the usage of map
 
     const projectList = JSON.parse(localStorage.getItem("projectList"));
-    // Copy the original arr to find the service inside the project that matches the id
-    // Then pop the service from the orignal list and save in the localStorage
-    const newList = projectList;
 
-    newList.map((item, index) =>
-      item.services.map((item, serviceIndex) =>
-        item.id === id ? projectList[index].services.pop(serviceIndex) : item
-      )
-    );
-    // JSON.parse(localStorage.getItem('projectList'))[0].services[0].id ==='573bd6b0-db5a-48bf-9e4d-027d9934e6c2'
+    projectList.forEach((project, projectIndex, array) => {
+      project.services.forEach((service, serviceIndex) =>
+        service.id === id
+          ? array[projectIndex].services.pop(serviceIndex)
+          : service
+      );
+    });
 
     localStorage.setItem("projectList", JSON.stringify(projectList));
     setProject(projectUpdated);
