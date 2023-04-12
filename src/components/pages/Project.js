@@ -35,22 +35,17 @@ function Project() {
     }
 
     const projectList = JSON.parse(localStorage.getItem("projectList"));
+    projectList.forEach((oldProject, index, array) =>
+      oldProject.id === id ? (array[index] = project) : oldProject
+    );
 
-    projectList.map((item, index) => {
-      if (item.id === id) {
-        projectList[index] = project;
-
-        setProject(project);
-        setShowProjectForm(false);
-        setMessage("Projeto atualizado.");
-        setType("success");
-
-        return true;
-      }
-      return item;
-    });
-
+    console.log(project);
     localStorage.setItem("projectList", JSON.stringify(projectList));
+
+    setProject(project);
+    setShowProjectForm(false);
+    setMessage("Projeto atualizado.");
+    setType("success");
   }
 
   function removeService(id, cost) {
