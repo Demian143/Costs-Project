@@ -76,6 +76,7 @@ function Project() {
   }
 
   function createService(project) {
+    // Todo: Debug this method to figure out what's really happenning here
     const lastService = project.services[project.services.length - 1];
     lastService.id = uuidv4();
 
@@ -93,11 +94,11 @@ function Project() {
     project.cost = newCost;
 
     const projectList = JSON.parse(localStorage.getItem("projectList"));
-    const newList = projectList.map((item) =>
-      item.id === id ? project : item
+    projectList.forEach((proj, index, array) =>
+      proj.id === id ? (array[index] = project) : proj
     );
 
-    localStorage.setItem("projectList", JSON.stringify(newList));
+    localStorage.setItem("projectList", JSON.stringify(projectList));
     setShowServiceForm(false);
   }
 
