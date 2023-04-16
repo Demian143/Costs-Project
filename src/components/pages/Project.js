@@ -61,11 +61,14 @@ function Project() {
     const projectList = JSON.parse(localStorage.getItem("projectList"));
 
     projectList.forEach((project, projectIndex, array) => {
-      project.services.forEach((service, serviceIndex) =>
-        service.id === id
-          ? array[projectIndex].services.pop(serviceIndex)
-          : service
-      );
+      project.services.forEach((service, serviceIndex) => {
+        if (service.id === id) {
+          const proj = array[projectIndex];
+          proj.services.pop(serviceIndex);
+          proj.cost = projectUpdated.cost;
+        }
+        return service;
+      });
     });
 
     localStorage.setItem("projectList", JSON.stringify(projectList));
