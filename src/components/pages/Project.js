@@ -1,11 +1,14 @@
 import { v4 as uuidv4 } from "uuid";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+
+import { ToastContainer } from "react-toastify";
+import { success, error } from "../messages/messages";
+
 import styles from "./styles/Project.module.css";
 
 import Loading from "../layout/Loading";
 import Container from "../layout/Container";
-import Message from "../layout/Message";
 import ProjectForm from "../project/ProjectForm";
 import ServiceForm from "../services/ServiceForm";
 import ServiceCard from "../services/ServiceCard";
@@ -16,8 +19,6 @@ function Project() {
   const [services, setServices] = useState([]);
   const [showProjectForm, setShowProjectForm] = useState(false);
   const [showServiceForm, setShowServiceForm] = useState(false);
-  const [message, setMessage] = useState();
-  const [type, setType] = useState();
 
   useEffect(() => {
     const projectList = JSON.parse(localStorage.getItem("projectList"));
@@ -29,8 +30,7 @@ function Project() {
 
   function editPost(project) {
     if (project.orçamento < project.cost) {
-      setMessage("O orçamento não pode ser menor que o custo do projeto.");
-      setType("error");
+      error("O orçamento não pode ser menor que o custo do projeto.");
       return false;
     }
 
@@ -44,8 +44,7 @@ function Project() {
 
     setProject(project);
     setShowProjectForm(false);
-    setMessage("Projeto atualizado.");
-    setType("success");
+    success("Projeto atualizado.");
   }
 
   function removeService(id, cost) {
@@ -74,8 +73,7 @@ function Project() {
     localStorage.setItem("projectList", JSON.stringify(projectList));
     setProject(projectUpdated);
     setServices(servicesUpdated);
-    setMessage("Serviço removido com sucesso!");
-    setType("success");
+    success("Serviço removido com sucesso!");
   }
 
   function createService(project) {
@@ -87,8 +85,7 @@ function Project() {
     const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost);
 
     if (newCost > parseFloat(project.orçamento)) {
-      setMessage("Orçamento ultrapaçado, verifique o valor do serviço");
-      setType("error");
+      error("Orçamento ultrapaçado, verifique o valor do serviço");
       project.services.pop();
 
       return false;
@@ -117,7 +114,6 @@ function Project() {
     <>
       {project.name ? (
         <div className={styles.project_details}>
-          {message && <Message type={type} message={message} />}
           <Container customClass="column">
             <div className={styles.details_container}>
               <h1>Projeto: {project.name}</h1>
@@ -181,6 +177,7 @@ function Project() {
       ) : (
         <Loading />
       )}
+      <ToastContainer />
     </>
   );
 }
