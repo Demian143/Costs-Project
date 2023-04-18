@@ -11,9 +11,9 @@ function Select({ text, name, options, handleOnChange, value }) {
         value={value || ""}
       >
         <option>Selecione uma opção</option>
-        {options.map((option) => (
-          <option value={option.id} key={option.id}>
-            {option.category}
+        {options.map((options, index) => (
+          <option value={options.id} key={index}>
+            {options.category}
           </option>
         ))}
       </select>

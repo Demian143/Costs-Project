@@ -2,28 +2,17 @@ import styles from "./styles/ProjectForm.module.css";
 import Input from "../form/Input";
 import Select from "../form/Select";
 import Submit from "../form/Submit";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function ProjectForm({ handleSubmit, projectData, btnText }) {
-  const [categories, setCategories] = useState([]);
   const [project, setProject] = useState(projectData || {});
 
-  useEffect(() => {
-    fetch(
-      "https://6bre5q0qh9.execute-api.sa-east-1.amazonaws.com/getCategories",
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setCategories(data.Items);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const categories = [
+    { category: "Infra", id: 1 },
+    { category: "Desenvolvimento", id: 2 },
+    { category: "Design", id: 3 },
+    { category: "Planejamento", id: 4 },
+  ];
 
   const submit = (e) => {
     e.preventDefault();
