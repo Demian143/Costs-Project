@@ -11,7 +11,6 @@ import Loading from "../layout/Loading";
 import styles from "./styles/Projects.module.css";
 
 function Projects() {
-  // Todo: Check duplicate messages error
   const [projects, setProjects] = useState([]);
   const [removeLoading, setRemoveLoading] = useState(false);
 
@@ -25,11 +24,9 @@ function Projects() {
   let location = useLocation();
 
   useEffect(() => {
-    return () => {
-      if (location.state) {
-        success(location.state.message);
-      }
-    };
+    if (location.state) {
+      success(location.state.message);
+    }
   }, [location]);
 
   const removeProject = (id) => {
