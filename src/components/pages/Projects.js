@@ -1,7 +1,8 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { success } from "../messages/messages";
+import { ToastContainer } from "react-toastify";
 
-import Message from "../layout/Message";
 import Container from "../layout/Container";
 import LinkButton from "../layout/LinkButton";
 import ProjectCart from "../project/ProjectCard";
@@ -10,18 +11,10 @@ import Loading from "../layout/Loading";
 import styles from "./styles/Projects.module.css";
 
 function Projects() {
+  // Todo: Check duplicate messages error
   const [projects, setProjects] = useState([]);
   const [removeLoading, setRemoveLoading] = useState(false);
-  const [projectMessage, setProjectMessage] = useState("");
 
-  const location = useLocation();
-  let message = "";
-
-  if (location.state) {
-    message = location.state.message;
-  }
-
-  // Get the obj in local storage
   useEffect(() => {
     const projectsData = localStorage.getItem("projectList");
 
@@ -29,15 +22,25 @@ function Projects() {
     setRemoveLoading(true);
   }, []);
 
-  function removeProject(id) {
+  let location = useLocation();
+
+  useEffect(() => {
+    return () => {
+      if (location.state) {
+        success(location.state.message);
+      }
+    };
+  }, [location]);
+
+  const removeProject = (id) => {
     const projectsData = JSON.parse(localStorage.getItem("projectList"));
     const newList = projectsData.filter((project) => project.id !== id);
 
     localStorage.setItem("projectList", JSON.stringify(newList));
 
     setProjects(newList);
-    setProjectMessage("Projeto removido com sucesso.");
-  }
+    success("Projeto removido com sucesso.");
+  };
 
   return (
     <div className={styles.project_container}>
@@ -45,8 +48,6 @@ function Projects() {
         <h1>Meus projetos</h1>
         <LinkButton to="/newproject" text="Criar projeto" />
       </div>
-      {message && <Message type="success" message={message} />}
-      {projectMessage && <Message type="success" message={projectMessage} />}
       <Container customClass="start">
         {projects.length > 0 &&
           projects.map((project) => (
@@ -64,6 +65,7 @@ function Projects() {
           <p>Não há projetos cadastrados!</p>
         )}
       </Container>
+      <ToastContainer />
     </div>
   );
 }

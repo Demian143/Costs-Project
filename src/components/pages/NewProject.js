@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+
 import styles from "./styles/NewProject.module.css";
 import ProjectForm from "../project/ProjectForm";
-import { v4 as uuidv4 } from "uuid";
 
 function NewProject() {
   const history = useNavigate();
