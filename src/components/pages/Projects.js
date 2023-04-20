@@ -27,6 +27,10 @@ function Projects() {
     if (location.state) {
       success(location.state.message);
     }
+
+    return () => {
+      location.state = null;
+    };
   }, [location]);
 
   const removeProject = (id) => {
