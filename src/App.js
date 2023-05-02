@@ -13,8 +13,8 @@ import Footer from "./components/layout/Footer";
 function App() {
   return (
     <Router>
-      <Navbar />
       <Container customClass="min-height">
+        <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
@@ -23,8 +23,8 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/project/:id" element={<Project />} />
         </Routes>
+        <Footer />
       </Container>
-      <Footer />
     </Router>
   );
 }

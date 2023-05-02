@@ -27,7 +27,7 @@ function Projects() {
     if (location.state) {
       success(location.state.message);
     }
-
+    // To avoid duplicates in dev enviroment
     return () => {
       location.state = null;
     };
