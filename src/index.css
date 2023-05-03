@@ -2,12 +2,14 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 html,
 body,
 #root {
+  display: flex;
   background-color: #efefef;
+  width: 100%;
   height: 100%;
 }
