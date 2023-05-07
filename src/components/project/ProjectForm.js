@@ -27,11 +27,9 @@ function ProjectForm({ handleSubmit, projectData, btnText }) {
     if (objIsComplete) {
       e.preventDefault();
       handleSubmit(project);
-      return;
     } else {
       e.preventDefault();
       error("Por favor preencha todo o formulario.");
-      return;
     }
   };
 
