@@ -2,6 +2,8 @@ import styles from "./styles/ProjectForm.module.css";
 import Input from "../form/Input";
 import Select from "../form/Select";
 import Submit from "../form/Submit";
+import { ToastContainer } from "react-toastify";
+import { error } from "../messages/messages";
 import { useState } from "react";
 
 function ProjectForm({ handleSubmit, projectData, btnText }) {
@@ -15,8 +17,22 @@ function ProjectForm({ handleSubmit, projectData, btnText }) {
   ];
 
   const submit = (e) => {
-    e.preventDefault();
-    handleSubmit(project);
+    // Fix: Object was being sent to handleSubmit without any verification
+    const objIsComplete =
+      project.name &&
+      project.orçamento &&
+      project.category &&
+      project.category.name !== "Selecione uma opção";
+
+    if (objIsComplete) {
+      e.preventDefault();
+      handleSubmit(project);
+      return;
+    } else {
+      e.preventDefault();
+      error("Por favor preencha todo o formulario.");
+      return;
+    }
   };
 
   function handleChange(e) {
@@ -58,6 +74,7 @@ function ProjectForm({ handleSubmit, projectData, btnText }) {
         options={categories}
       />
       <Submit text={btnText} />
+      <ToastContainer />
     </form>
   );
 }
