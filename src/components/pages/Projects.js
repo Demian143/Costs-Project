@@ -17,7 +17,11 @@ function Projects() {
   useEffect(() => {
     const projectsData = localStorage.getItem("projectList");
 
-    setProjects(JSON.parse(projectsData));
+    if (projectsData) {
+      setProjects(JSON.parse(projectsData));
+      setRemoveLoading(true);
+    }
+
     setRemoveLoading(true);
   }, []);
 
